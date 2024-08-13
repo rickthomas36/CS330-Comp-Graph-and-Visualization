@@ -1,41 +1,71 @@
-# CS330-Comp-Graph-and-Visualization
+# GLFW binaries for 32-bit Windows
 
-How do I approach designing software?
-Start by fully understanding the problem you're trying to solve. Engage in research, user interviews, and explore similar software solutions to gain insights. 
-Gather both functional and non-functional requirements. Clearly outline what the software should do, how it should perform, and any constraints.
-Regularly review the design with stakeholders and iterate based on feedback. This ensures the design aligns with user needs and technical feasibility.
+This archive contains documentation, headers, pre-compiled static libraries,
+import libraries and DLLs for GLFW 3.3.8.
 
-What new design skills has your work on the project helped you to craft?
-Improved ability to design 3D models, mesh structures, and shaders. Enhanced skills in creating intuitive navigation and control systems for 3D environments.
-trengthened understanding of how to structure complex systems involving graphics rendering, user input handling, and data management.
+Binaries for the following compilers are included
 
-What design process did you follow for your project work?
-Brainstorming ideas for the 3D scene, including objects, interactions, and camera controls. Developing a basic version of the scene to test different aspects, such as rendering quality, performance, and user controls.
-Polishing the design to meet the final project requirements and ensure a seamless experience.
+ - Visual C++ 2022 (built with 17.3.0 preview 4.0)
+ - Visual C++ 2019 (built with 16.11.17)
+ - Visual C++ 2017 (built with 15.9.49)
+ - Visual C++ 2015 (built with 14.0.25431.01)
+ - Visual C++ 2013 (built with 12.0.40629.00)
+ - Visual C++ 2012 (built with 11.0.61219.00)
+ - Visual C++ 2010 (built with 10.0.30319.1)
+ - MinGW-w64 (built with GCC 8.1.0)
+ - MinGW (built with GCC 9.2.0)
 
-How could tactics from your design approach be applied in future work?
-Computational graphics and visualizations teach you how to represent data and ideas visually, making complex concepts easier to understand. These skills are valuable in fields like engineering, science, and design, where visual representation of data and simulations play a crucial role in learning and discovery.
 
-How do I approach developing programs?
-Start with a clear understanding of the requirements and create a development plan that outlines the steps, timelines, and resources needed.
-Regularly test the code to catch and fix bugs early in the development process. This also includes unit testing, integration testing, and user testing.
+## Binaries for Visual C++
 
-What new development strategies did you use while working on your 3D scene?
-Separating concerns by developing different parts of the scene (e.g., rendering, input handling) in distinct modules.
-Applying matrix transformations for object manipulation and camera movement within the 3D space.
+All binaries for Visual C++ 2017 and earlier are compatible with Windows XP, but
+this is not supported by Visual C++ 2019.
 
-How did iteration factor into your development?
-Iteration played a crucial role by allowing you to continuously test and refine your 3D scene. Each iteration likely focused on improving specific aspects such as rendering quality, user interaction, or performance, leading to a more polished final product.
+### GLFW as a DLL
 
-How has your approach to developing code evolved throughout the milestones, which led you to the project’s completion?
-As I progressed, I became more efficient in implementing features, debugging, and optimizing code.
-Over time, you likely adopted more advanced techniques in graphics programming, such as efficient memory management and optimization of rendering pipelines.
+To use GLFW as a DLL, link against the `glfw3dll.lib` file for your
+environment.  This will add a load time dependency on `glfw3.dll`.  The
+remaining files in the same directory are not needed.
 
-How can computer science help me in reaching my goals?
-Computer science provides the foundational skills and knowledge to solve complex problems, develop innovative solutions, and create technology that can advance your personal and professional goals. Whether it's through programming, data analysis, or understanding algorithms, computer science equips you with the tools to succeed in a technology-driven world.
+This DLL is built in release mode for the Multithreaded DLL runtime library.
 
-How do computational graphics and visualizations give you new knowledge and skills that can be applied in your future educational pathway?
-Computational graphics and visualizations teach you how to represent data and ideas visually, making complex concepts easier to understand. These skills are valuable in fields like engineering, science, and design, where visual representation of data and simulations play a crucial role in learning and discovery.
+There is also a GLFW DLL and import library pair in the `lib-static-ucrt`
+directory.  These are built with Visual C++ 2019 and the static Multithreaded
+runtime library.
 
-How do computational graphics and visualizations give you new knowledge and skills that can be applied in your future professional pathway?
-skills in computational graphics and visualizations can be applied to industries like gaming, animation, virtual reality, and data visualization. These skills enable you to create immersive experiences, communicate information effectively, and develop technology that relies on visual interactions, all of which are increasingly important in today's digital world.
+### GLFW as a static library
+
+To use GLFW as a static library, link against `glfw3.lib` if your application
+is using the Multithreaded DLL runtime library, or `glfw3_mt.lib` if it is
+using the static Multithreaded runtime library.  The remaining files in the same
+directory are not needed.
+
+The static libraries are built in release mode and do not contain debug
+information but can still be linked with the debug versions of the runtime
+library.
+
+
+## Binaries for MinGW and MinGW-w64
+
+### GLFW as a DLL
+
+To use GLFW as a DLL, link against the `libglfw3dll.a` file for your
+environment.  This will add a load time dependency on `glfw3.dll`.  The
+remaining files in the same directory are not needed.
+
+The DLLs are built in release mode.
+
+The DLLs depend on the `msvcrt.dll` C runtime library.  There is also a GLFW
+DLL and import library in the `lib-static-ucrt` directory that is built with
+Visual C++ 2019 and statically linked against the UCRT.
+
+All DLLs in this archive provide the same ABI and can be used as drop-in
+replacements for one another, as long as the C runtime library they depend on is
+available.
+
+### GLFW as a static library
+
+To use GLFW as a static library, link against the `libglfw3.a` file for your
+environment.  The other files in the same directory are not needed.
+
+The library is built in release mode and do not contain debug information.
